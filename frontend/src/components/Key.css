@@ -1,0 +1,42 @@
+.Key {
+  background-color: #DDD;
+  height: 300px;
+  width: 60px;
+  border: 2px solid black;
+  /* box-shadow: 2px 1px 1px #222; */
+  border-radius: 3px;
+
+}
+
+.Key-flat {
+  position: relative;
+  background-color: #111;
+  margin: 0 -20px 0 -20px;
+  height: 200px;
+  width: 40px;
+  z-index: 2;
+  color: #DDD;
+  border-radius: 3px;
+}
+
+.Key-text {
+  position: relative;
+  top: 70%;
+  color: #000;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 80%;
+  pointer-events: none;
+}
+
+.u-white {
+  color: #DDD;
+}
+
+.pressed {
+  background-color: #0044FF;
+}
+
+.capsLock {
+  font-size: .6rem;
+}
