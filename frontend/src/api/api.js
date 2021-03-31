@@ -99,7 +99,7 @@ export const release = (evt) => {
     case "o":
       return synth.triggerRelease("G#4");    
     case "l":
-      return synth.triggerRelease("Aj4");    
+      return synth.triggerRelease("A4");    
     case "p":
       return synth.triggerRelease("A#4");    
     case ";":

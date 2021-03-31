@@ -1,46 +1,48 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import './Keyboard.css';
 import Key from './Key'
-import { attack, release } from '../api/api';
+// import { attack, release } from '../api/api';
 import { NOTES, N2K } from '../keyboardLayouts/1point5Octave';
 
-const Keyboard = () => {
-  const [pressedKeys, setPressedKeys] = useState([]); 
+const Keyboard = ( {handleKeydown, handleKeyup} ) => {
+  // const [pressedKeys, setPressedKeys] = useState([]); 
 
-  useEffect(() => {
-    const handleKeydown = (evt) => {
-      if (evt.repeat) {
-        return;
-      }
+  // useEffect(() => {
+  //   const handleKeydown = (evt) => {
+  //     if (evt.repeat) {
+  //       return;
+  //     }
 
-      console.log(evt.key);
+  //     console.log(evt.key);
 
-      const key = evt.key;
-      setPressedKeys( [...pressedKeys, key.toUpperCase()] );
+  //     const key = evt.key;
+  //     setPressedKeys( [...pressedKeys, key.toUpperCase()] );
       
-      attack(evt);
-    } 
+  //     attack(evt);
+  //   } 
 
-    window.addEventListener('keydown', handleKeydown);
-    return () => {
-      window.removeEventListener('keydown', handleKeydown)
-    }
-  }, [pressedKeys]);
+  //   window.addEventListener('keydown', handleKeydown);
+  //   return () => {
+  //     window.removeEventListener('keydown', handleKeydown)
+  //   }
+  // });
 
-  useEffect(() => {
-    const handleKeyup = (evt) => {
-      const removeKeyup = pressedKeys.filter(key => key !== evt.key.toUpperCase());
-      setPressedKeys(removeKeyup);
-      release(evt);
-    }
+  // useEffect(() => {
+  //   const handleKeyup = (evt) => {
+  //     const removeKeyup = pressedKeys.filter(key => key !== evt.key.toUpperCase());
+  //     setPressedKeys(removeKeyup);
+  //     release(evt);
+  //   }
 
-    window.addEventListener('keyup', handleKeyup);
-    return () => {
-      window.removeEventListener('keyup', handleKeyup);
-    }
-  }, [pressedKeys]);
+  //   window.addEventListener('keyup', handleKeyup);
+  //   return () => {
+  //     window.removeEventListener('keyup', handleKeyup);
+  //   }
+  // });
 
-  console.log(pressedKeys);
+  // console.log(pressedKeys);
+  console.log('Keyboard render');
   
 
   const keys = NOTES.map(key => {
@@ -49,17 +51,16 @@ const Keyboard = () => {
         key={key}
         note={N2K[key]}
         isFlat={key.length > 2}
-        isPressed={pressedKeys.includes(N2K[key])}
         capsLock={N2K[key] === "CAPSLOCK"}
       />
     )
   })
 
-  return (
+  return useMemo( () => (
     <div className="Piano">
       {keys}
     </div>
-  )
+  ), [keys])
 }
 
 export default Keyboard;
