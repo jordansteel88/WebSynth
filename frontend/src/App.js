@@ -1,5 +1,5 @@
 // import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import './App.css';
 import { attack, release } from './api/api';
 import Keyboard from './components/Keyboard'
@@ -41,18 +41,16 @@ function App() {
     }
   });
 
-  return (
+  return useMemo( () => (
     <KeyboardContext.Provider value={pressedKeys}>
       <div className="App">
         <div className="App-header">
-          <Keyboard 
-            // handleKeydown={handleKeydown}
-            // handleKeyup={handleKeyup}
-          />  
+          <Keyboard />  
         </div>
       </div>
     </KeyboardContext.Provider>
-  );
+  ), [pressedKeys])
 }
+
 
 export default App;

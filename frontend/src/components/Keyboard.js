@@ -5,7 +5,7 @@ import Key from './Key'
 // import { attack, release } from '../api/api';
 import { NOTES, N2K } from '../keyboardLayouts/1point5Octave';
 
-const Keyboard = ( {handleKeydown, handleKeyup} ) => {
+const Keyboard = () => {
   // const [pressedKeys, setPressedKeys] = useState([]); 
 
   // useEffect(() => {
