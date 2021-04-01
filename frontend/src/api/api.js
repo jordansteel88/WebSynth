@@ -2,24 +2,25 @@ import * as Tone from 'tone';
 
 const synth = new Tone.PolySynth(
   Tone.MonoSynth, {
-    oscillator: {type: "triangle"},
+    oscillator: {type: 'sine'},
     envelope: {
-      attack: 0.1
+      attack: 0.5,
+      sustain: 1,
+      decay: 1
     }
   }
 ).toDestination();
 
-synth.volume.value = -8;
+synth.volume.value = -10;
+// synth.maxPolyphony = 4;
 
-// const synth = new Tone.PolySynth(
-//   Tone.Sampler
-// ).toDestination();
 
 // handles keyboard events
 export const attack = (evt) => {
+  console.log('note attacked');
   // evt object has the key property to tell which key was pressed
-  switch (evt.key) {
-    case "CapsLock":
+  switch (evt.key.toLowerCase()) {
+    case "capslock":
       return synth.triggerAttack("F3");    
     case "q":
       return synth.triggerAttack("F#3");       
@@ -65,8 +66,9 @@ export const attack = (evt) => {
 };
 // when the key is released, audio is released as well
 export const release = (evt) => {
-  switch (evt.key) {
-    case "CapsLock":
+  console.log('note released');
+  switch (evt.key.toLowerCase()) {
+    case "capslock":
       return synth.triggerRelease("F3");    
     case "q":
       return synth.triggerRelease("F#3");       
