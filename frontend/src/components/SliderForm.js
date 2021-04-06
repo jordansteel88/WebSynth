@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import './SliderForm.css';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import SynthContext from '../tone/SynthContext';
-// import Synth from './Synth';
+import Synth from './Synth';
 
 const SliderForm = () => {
   const { getSynthParams } = useContext(SynthContext);
@@ -103,7 +103,7 @@ const SliderForm = () => {
           </Input>        
         </FormGroup>
       </Form>
-      {/* <Synth levels={levels}/> */}
+      <Synth levels={levels}/>
     </div>
 
   )
