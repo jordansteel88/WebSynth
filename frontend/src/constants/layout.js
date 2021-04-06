@@ -1,3 +1,10 @@
+export const ALLOWED_KEYS = [
+  'CAPSLOCK', 'Q', 'A', 'W', 
+  'S', 'E', 'D', 'F', 'T', 'G', 
+  'Y', 'H', 'J', 'I', 'K', 'O',
+  'L', 'P', ';', "'"
+]
+
 export const NOTES = [
   'F3', 'Gb3', 'G3', 'Ab3', 'A3', 
   'Bb3', 'B3', 'C4', 'Db4', 'D4', 

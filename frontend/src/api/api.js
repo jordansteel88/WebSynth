@@ -1,114 +1,58 @@
-import * as Tone from 'tone';
+import axios from "axios";
 
-const synth = new Tone.PolySynth(
-  Tone.MonoSynth, {
-    oscillator: {type: 'sine'},
-    envelope: {
-      attack: 0.5,
-      sustain: 1,
-      decay: 1
+const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+
+/** API Class.
+ *
+ * Handles user/auth calls to backend.
+ *
+ */
+
+class BackendApi {
+  // the token for interactive with the API will be stored here.
+  static token;
+
+  static async request(endpoint, data = {}, method = "get") {
+    console.debug("API Call:", endpoint, data, method);
+
+    const url = `${BASE_URL}/${endpoint}`;
+    const headers = { Authorization: `Bearer ${BackendApi.token}` };
+    const params = (method === "get")
+        ? data
+        : {};
+
+    try {
+      return (await axios({ url, method, data, params, headers })).data;
+    } catch (err) {
+      console.error("API Error:", err.response);
+      let message = err.response.data.error.message;
+      throw Array.isArray(message) ? message : [message];
     }
   }
-).toDestination();
 
-synth.volume.value = -10;
-// synth.maxPolyphony = 4;
+  // Individual API routes
 
-
-// handles keyboard events
-export const attack = (evt) => {
-  console.log('note attacked');
-  // evt object has the key property to tell which key was pressed
-  switch (evt.key.toLowerCase()) {
-    case "capslock":
-      return synth.triggerAttack("F3");    
-    case "q":
-      return synth.triggerAttack("F#3");       
-    case "a":
-      return synth.triggerAttack("G3");
-    case "w":
-      return synth.triggerAttack("G#3");
-    case "s":
-      return synth.triggerAttack("A3");
-    case "e":
-      return synth.triggerAttack("A#3");
-    case "d":
-      return synth.triggerAttack("B3");
-    case "f":
-      return synth.triggerAttack("C4");
-    case "t":
-      return synth.triggerAttack("C#4");
-    case "g":
-      return synth.triggerAttack("D4");
-    case "y":
-      return synth.triggerAttack("D#4");
-    case "h":
-      return synth.triggerAttack("E4");
-    case "j":
-      return synth.triggerAttack("F4");
-    case "i":
-      return synth.triggerAttack("F#4");    
-    case "k":
-      return synth.triggerAttack("G4");    
-    case "o":
-      return synth.triggerAttack("G#4");    
-    case "l":
-      return synth.triggerAttack("A4");    
-    case "p":
-      return synth.triggerAttack("A#4");    
-    case ";":
-      return synth.triggerAttack("B4");    
-    case "'":
-      return synth.triggerAttack("C5");
-    default:
-      return;
+  static async register(data) {
+    console.log(data);
+    let res = await this.request('auth/register', data, "post");
+    console.log('after register function');
+    return res.token;
+  }  
+  
+  static async login(data) {
+    let res = await this.request('auth/token', data, "post");
+    return res.token;
   }
-};
-// when the key is released, audio is released as well
-export const release = (evt) => {
-  console.log('note released');
-  switch (evt.key.toLowerCase()) {
-    case "capslock":
-      return synth.triggerRelease("F3");    
-    case "q":
-      return synth.triggerRelease("F#3");       
-    case "a":
-      return synth.triggerRelease("G3");
-    case "w":
-      return synth.triggerRelease("G#3");
-    case "s":
-      return synth.triggerRelease("A3");
-    case "e":
-      return synth.triggerRelease("A#3");
-    case "d":
-      return synth.triggerRelease("B3");
-    case "f":
-      return synth.triggerRelease("C4");
-    case "t":
-      return synth.triggerRelease("C#4");
-    case "g":
-      return synth.triggerRelease("D4");
-    case "y":
-      return synth.triggerRelease("D#4");
-    case "h":
-      return synth.triggerRelease("E4");
-    case "j":
-      return synth.triggerRelease("F4");
-    case "i":
-      return synth.triggerRelease("F#4");    
-    case "k":
-      return synth.triggerRelease("G4");    
-    case "o":
-      return synth.triggerRelease("G#4");    
-    case "l":
-      return synth.triggerRelease("A4");    
-    case "p":
-      return synth.triggerRelease("A#4");    
-    case ";":
-      return synth.triggerRelease("B4");    
-    case "'":
-      return synth.triggerRelease("C5");
-    default:
-      return;
+
+  static async getCurrentUser(username) {
+    let res = await this.request(`users/${username}`);
+    return res.user;
   }
-};
+
+  static async updateUser(username, data) {
+    let res = await this.request(`users/${username}`, data, "patch");
+    return res.user;
+  }
+}
+
+export default BackendApi;

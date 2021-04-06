@@ -1,0 +1,26 @@
+.SliderForm {
+  width: 100px;
+  /* display: flex; */
+  margin-bottom: 20px;
+}
+
+.SliderForm-label {
+  display: block;
+  width: 100px;
+}
+
+.SliderForm-input {
+    -webkit-appearance: none;
+    height: 100px;
+    width: 100px;
+    border-radius: 5px;
+    background: #ccc;
+    outline: none;
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    margin-bottom: 30px;
+}
+
+.Slider-group {
+  display: inline-block;
+}
