@@ -1,11 +1,11 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState } from 'react';
 import './SliderForm.css';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
-import SynthContext from '../tone/SynthContext';
+// import SynthContext from '../tone/SynthContext';
 import Synth from './Synth';
 
 const SliderForm = () => {
-  const { getSynthParams } = useContext(SynthContext);
+  // const { getSynthParams } = useContext(SynthContext);
 
   const INITIAL_STATE = {
     gain: 0,
@@ -25,9 +25,9 @@ const SliderForm = () => {
     }));
   }
 
-  useEffect(() => {
-    getSynthParams(levels);
-  }, [getSynthParams, levels])
+  // useEffect(() => {
+  //   getSynthParams(levels);
+  // }, [getSynthParams, levels])
 
   return (
     <div>

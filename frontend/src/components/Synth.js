@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ALLOWED_KEYS } from '../constants/layout';
 import { playSynth } from '../tone/playSynth';
 import * as Tone from 'tone';
@@ -16,7 +16,7 @@ const Synth = ({ levels }) => {
 
     let synth = new Tone.PolySynth(
       Tone.MonoSynth, {
-        oscillator: {type: "sawtooth"},
+        oscillator: {type: "triangle"},
         envelope: {
           attack: obj.attack,
           decay: obj.decay,
