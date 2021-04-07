@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { ALLOWED_KEYS } from '../constants/layout';
 import { playSynth } from '../tone/playSynth';
 import * as Tone from 'tone';
@@ -13,7 +13,9 @@ const Synth = ({ levels }) => {
     // console.log('****** levels *****');
     // console.log(obj);
     // console.log('****** levels ******');
-
+  
+  
+    console.log("creating synth");
     let synth = new Tone.PolySynth(
       Tone.MonoSynth, {
         oscillator: {type: "triangle"},
@@ -25,12 +27,14 @@ const Synth = ({ levels }) => {
         }
       }
     ).toDestination();  
-
+  
     return synth;
   }
 
+  const synth = useMemo( () => {
+    return configureSynth(levels);
+  }, [levels])
 
-  let synth = configureSynth(levels);
   // console.log("gain: " + levels.gain);
   // console.log(typeof levels.gain);
   synth.volume.value = levels.gain;
@@ -43,7 +47,6 @@ const Synth = ({ levels }) => {
 
   useEffect(() => {
     const handleKeydown = (evt) => {
-      // console.log(evt.key.toUpperCase() + ' keydown fired');
 
       if (ALLOWED_KEYS.includes(evt.key.toUpperCase())) {
         evt.preventDefault();
@@ -52,6 +55,8 @@ const Synth = ({ levels }) => {
       if (evt.repeat || pressedKeys.includes(evt.key.toUpperCase())) {
         return;
       }
+
+      console.log(evt.key.toUpperCase() + ' keydown fired');
 
       const key = evt.key;
       setPressedKeys( [...pressedKeys, key.toUpperCase()] );
@@ -85,7 +90,7 @@ const Synth = ({ levels }) => {
       window.removeEventListener('keyup', handleKeyup);    
     }
   //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pressedKeys]);
+  }, [pressedKeys, levels]);
 
   return null;
 }
