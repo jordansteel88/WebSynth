@@ -2,20 +2,11 @@ import React, { useState } from 'react';
 import './SliderForm.css';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 // import SynthContext from '../tone/SynthContext';
-import Synth from './Synth';
 
-const SliderForm = () => {
+const SliderForm = ({controls, callback}) => {
   // const { getSynthParams } = useContext(SynthContext);
 
-  const INITIAL_STATE = {
-    gain: 0,
-    attack: 0.5,
-    decay: 0.5,
-    sustain: 0.5,
-    release: 0.5
-  }
-
-  const [levels, setLevels] = useState(INITIAL_STATE);
+  const [levels, setLevels] = useState(controls);
 
   const handleChange = evt => {
     const { name, value } = evt.target;
@@ -23,6 +14,10 @@ const SliderForm = () => {
       ...formData,
       [name]: parseFloat(value)
     }));
+  }
+
+  const mouseUp = () => {
+    callback(levels)
   }
 
   // useEffect(() => {
@@ -42,6 +37,7 @@ const SliderForm = () => {
                  step="0.01" 
                  min="-20" 
                  max="20"
+                 onMouseUp={mouseUp}
                  onChange={handleChange}
                  value={levels.gain}>
           </Input>
@@ -103,7 +99,6 @@ const SliderForm = () => {
           </Input>        
         </FormGroup>
       </Form>
-      <Synth levels={levels}/>
     </div>
 
   )
