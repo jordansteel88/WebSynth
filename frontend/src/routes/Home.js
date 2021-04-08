@@ -66,7 +66,7 @@ const Home = () => {
   return (
     // <SynthContext.Provider value={{ getSynthParams }}>
       <div className="Home">
-        {currentUser 
+        {!currentUser 
         ? <h2 className="Home-header">Log in or sign up to access more features!</h2>
         : <EffectsPanel /> }
         <Keyboard />

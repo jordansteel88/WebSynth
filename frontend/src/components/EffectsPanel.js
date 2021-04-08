@@ -13,6 +13,7 @@ const EffectsPanel = () => {
   }
 
   const [levels, setLevels] = useState(INITIAL_STATE);
+  // console.log(levels);
 
   return ( 
     <div className="SliderPanel">

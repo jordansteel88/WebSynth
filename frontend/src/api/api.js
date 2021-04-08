@@ -9,7 +9,6 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
  */
 
 class BackendApi {
-  // the token for interactive with the API will be stored here.
   static token;
 
   static async request(endpoint, data = {}, method = "get") {
@@ -45,13 +44,23 @@ class BackendApi {
   }
 
   static async getCurrentUser(username) {
-    let res = await this.request(`users/${username}`);
+    let res = await this.request(`users/${username}`, "get");
     return res.user;
   }
-
-  static async updateUser(username, data) {
-    let res = await this.request(`users/${username}`, data, "patch");
-    return res.user;
+  
+  static async saveProfile(data) {
+    let res = await this.request(`profiles/`, data, "post");
+    return res.profile;
+  }  
+  
+  static async getUsersProfiles(username) {
+    let res = await this.request(`profiles/${username}`, "get");
+    return res.profiles;
+  }  
+  
+  static async getProfileData(profileName) {
+    let res = await this.request(`profiles/${profileName}`, "get");
+    return res.profiles;
   }
 }
 

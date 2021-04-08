@@ -14,6 +14,7 @@ const SliderForm = ({controls, callback}) => {
       ...formData,
       [name]: parseFloat(value)
     }));
+    console.log(levels);
   }
 
   const mouseUp = () => {
@@ -52,6 +53,7 @@ const SliderForm = ({controls, callback}) => {
                  step="0.01" 
                  min="0" 
                  max="1"
+                 onMouseUp={mouseUp}
                  onChange={handleChange}
                  value={levels.attack}>
           </Input>
@@ -66,6 +68,7 @@ const SliderForm = ({controls, callback}) => {
                  step="0.01" 
                  min="0" 
                  max="1"
+                 onMouseUp={mouseUp}
                  onChange={handleChange}
                  value={levels.decay}>
           </Input>
@@ -78,8 +81,9 @@ const SliderForm = ({controls, callback}) => {
                  orient="vertical" 
                  type="range" 
                  step="0.01" 
-                 min="0" 
-                 max="1"
+                 min="0.01" 
+                 max="0.99"
+                 onMouseUp={mouseUp}
                  onChange={handleChange}
                  value={levels.sustain}>
           </Input>        
@@ -92,8 +96,9 @@ const SliderForm = ({controls, callback}) => {
                  orient="vertical" 
                  type="range" 
                  step="0.01" 
-                 min="0" 
-                 max="1"
+                 min="0.01" 
+                 max="0.99"
+                 onMouseUp={mouseUp}
                  onChange={handleChange}
                  value={levels.release}>
           </Input>        
