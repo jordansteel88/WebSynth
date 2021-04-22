@@ -1,0 +1,11 @@
+.EffectsPanel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.EffectsPanel h2 {
+  margin-bottom: 75px;
+}
+

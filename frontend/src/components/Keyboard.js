@@ -70,7 +70,7 @@ const Keyboard = ({ synth }) => {
   })
 
   return useMemo( () => (
-    <div className="Piano">
+    <div className="Keyboard">
       {keys}
     </div>
   ), [keys])

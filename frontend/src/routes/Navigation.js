@@ -18,12 +18,16 @@ const Navigation = ({ logout }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen); 
 
+
   const loggedInNav = () => {
+    let profilesLink = `/profiles/${currentUser.username}`;
+    console.log(profilesLink);
+
     return (
       <Nav className="ml-auto">       
         <NavItem className="mr-3">
-          <NavLink className="text-white" to="/profile">
-            {currentUser.username}'s Profile
+          <NavLink className="text-white" to={profilesLink}>
+            {currentUser.username}'s Profiles
           </NavLink>
         </NavItem>        
         <NavItem className="mr-2">

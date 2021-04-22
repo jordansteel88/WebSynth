@@ -6,19 +6,20 @@ import * as Tone from 'tone';
 
 let keyCount = 0;
 
-const Synth = ({ levels }) => {
+const Synth = ({ levels, waveform, octave }) => {
   const [pressedKeys, setPressedKeys] = useState([]);
 
-  const configureSynth = (obj) => {
-    // console.log('****** levels *****');
-    // console.log(obj);
-    // console.log('****** levels ******');
-  
-  
+  const configureSynth = (obj, waveform) => { 
     console.log("creating synth");
+    // console.log("waveform: " + waveform);
+    // console.log("attack: " + obj.attack);
+    // console.log("decay: " + obj.decay);
+    // console.log("sustain: " + obj.sustain);
+    // console.log("release: " + obj.release);
+    
     let synth = new Tone.PolySynth(
       Tone.MonoSynth, {
-        oscillator: {type: "triangle"},
+        oscillator: {type: waveform},
         envelope: {
           attack: obj.attack,
           decay: obj.decay,
@@ -29,21 +30,35 @@ const Synth = ({ levels }) => {
     ).toDestination();  
   
     return synth;
+     
+
+  //POTENTIAL PHASER ADD-ON
+    // const phaser = new Tone.Phaser({
+    //   frequency: 15,
+    //   octaves: 5,
+    //   baseFrequency: 1000
+    // }).toDestination();
+
+    // let synth = new Tone.PolySynth(
+    //     Tone.MonoSynth, {
+    //       oscillator: {type: waveform, phase: 20},
+    //       envelope: {
+    //         attack: obj.attack,
+    //         decay: obj.decay,
+    //         sustain: obj.sustain,
+    //         release: obj.release
+    //       }
+    //     }
+    //   ).connect(phaser);  
+    
+    //   return synth;
   }
 
   const synth = useMemo( () => {
-    return configureSynth(levels);
-  }, [levels])
+    return configureSynth(levels, waveform);
+  }, [levels, waveform])
 
-  // console.log("gain: " + levels.gain);
-  // console.log(typeof levels.gain);
   synth.volume.value = levels.gain;
-  // console.log("synth volume: " + synth.volume.value);
-
-
-  // console.log('%%%%%%% synth %%%%%%%%');
-  // console.log(synth);
-  // console.log('%%%%%%% synth %%%%%%%%');
 
   useEffect(() => {
     const handleKeydown = (evt) => {
@@ -64,7 +79,7 @@ const Synth = ({ levels }) => {
       let target = document.getElementById(evt.key.toUpperCase())
       if (target) target.classList += ' pressed';
 
-      playSynth(evt, "attack", synth);
+      playSynth(evt, "attack", synth, octave);
       keyCount++;
     };
 
@@ -77,7 +92,7 @@ const Synth = ({ levels }) => {
       let target = document.getElementById(evt.key.toUpperCase())
       if (target) target.classList.remove('pressed');
 
-      playSynth(evt, "release", synth);
+      playSynth(evt, "release", synth, octave);
       keyCount--;
       if (keyCount === 0) setPressedKeys([]);
     };
@@ -90,7 +105,7 @@ const Synth = ({ levels }) => {
       window.removeEventListener('keyup', handleKeyup);    
     }
   //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pressedKeys, levels]);
+  }, [pressedKeys, levels, waveform, octave]);
 
   return null;
 }

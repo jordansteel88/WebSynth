@@ -4,8 +4,8 @@ import Home from './Home';
 import LoginForm from '../auth/LoginForm';
 import RegisterForm from '../auth/RegisterForm';
 import Profile from './Profile';
-
 const Routes = ({ login, register }) => {
+  // const { currentUser } = useContext(UserContext)
   return (
     <div>
       <Switch>
@@ -21,7 +21,7 @@ const Routes = ({ login, register }) => {
           <RegisterForm register={register} />
         </Route>  
 
-        <Route exact path="/profile">
+        <Route exact path="/profiles/:currentUser">
           <Profile />
         </Route> 
 

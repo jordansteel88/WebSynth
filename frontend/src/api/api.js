@@ -58,8 +58,10 @@ class BackendApi {
     return res.profiles;
   }  
   
-  static async getProfileData(profileName) {
-    let res = await this.request(`profiles/${profileName}`, "get");
+  static async getProfileData(username, profileID) {
+    console.log(username, profileID);
+    let res = await this.request(`profiles/${username}/${profileID}`, "get");
+    console.log(res.profiles);
     return res.profiles;
   }
 }

@@ -1,0 +1,48 @@
+.waveform {
+  border: 2px solid rgb(78, 72, 130);
+  border-radius: 3px;
+  width: 55%;
+  margin: 20px 0 20px 0;
+}
+
+.waveform h4 {
+  margin: -15px auto 10px auto;
+  background-color: #282c34;
+  width: 22%;
+  font-weight: 600;
+}
+
+.WaveformForm-radios {
+	display: flex;
+	margin-bottom: 36px;
+	overflow: hidden;
+}
+
+.WaveformForm-radios input {
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	width: 1px;
+	border: 0;
+	overflow: hidden;
+}
+
+.WaveformForm-radios label {
+	background-color: #4c527e;
+	color: #ccc;
+	font-size: 1.1rem;
+	line-height: .8;
+	text-align: center;
+	padding: 8px 12px;
+	margin: 0 auto;
+  border-radius: 3px;
+	transition: all 0.2s ease-in-out;
+}
+
+.WaveformForm-radios label:hover {
+	cursor: pointer;
+}
+
+.WaveformForm-radios input:checked + label {
+	background-color: #007bff;
+}

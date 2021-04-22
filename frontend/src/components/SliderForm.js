@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import './SliderForm.css';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
-// import SynthContext from '../tone/SynthContext';
 
 const SliderForm = ({controls, callback}) => {
-  // const { getSynthParams } = useContext(SynthContext);
-
   const [levels, setLevels] = useState(controls);
 
   const handleChange = evt => {
@@ -21,30 +18,12 @@ const SliderForm = ({controls, callback}) => {
     callback(levels)
   }
 
-  // useEffect(() => {
-  //   getSynthParams(levels);
-  // }, [getSynthParams, levels])
-
   return (
-    <div>
-      <Form>
-        <FormGroup className="Slider-group">
-          <Label htmlFor="gain" className="SliderForm-label">Gain</Label>
-          <Input id="gain"
-                 name="gain" 
-                 className="SliderForm-input" 
-                 orient="vertical" 
-                 type="range" 
-                 step="0.01" 
-                 min="-20" 
-                 max="20"
-                 onMouseUp={mouseUp}
-                 onChange={handleChange}
-                 value={levels.gain}>
-          </Input>
-        </FormGroup>        
-        <FormGroup className="Slider-group">
-          <Label htmlFor="attack" className="SliderForm-label">Attack</Label>
+    <div className="envelope">
+      <h4>Envelope</h4>
+      <Form className="SliderForm">        
+        <FormGroup className="SliderForm-group">
+          <Label htmlFor="attack" className="SliderForm-label small">Attack</Label>
           <Input id="attack" 
                  name="attack" 
                  className="SliderForm-input" 
@@ -58,8 +37,8 @@ const SliderForm = ({controls, callback}) => {
                  value={levels.attack}>
           </Input>
         </FormGroup>        
-        <FormGroup className="Slider-group">
-          <Label htmlFor="decay" className="SliderForm-label">Decay</Label>
+        <FormGroup className="SliderForm-group">
+          <Label htmlFor="decay" className="SliderForm-label small">Decay</Label>
           <Input id="decay"
                  name="decay"  
                  className="SliderForm-input" 
@@ -73,8 +52,8 @@ const SliderForm = ({controls, callback}) => {
                  value={levels.decay}>
           </Input>
         </FormGroup>        
-        <FormGroup className="Slider-group">
-          <Label htmlFor="sustain" className="SliderForm-label">Sustain</Label>
+        <FormGroup className="SliderForm-group">
+          <Label htmlFor="sustain" className="SliderForm-label small">Sus</Label>
           <Input id="sustain" 
                  name="sustain" 
                  className="SliderForm-input" 
@@ -88,8 +67,8 @@ const SliderForm = ({controls, callback}) => {
                  value={levels.sustain}>
           </Input>        
         </FormGroup>        
-        <FormGroup className="Slider-group">
-          <Label htmlFor="release" className="SliderForm-label">Release</Label>
+        <FormGroup className="SliderForm-group">
+          <Label htmlFor="release" className="SliderForm-label small">Release</Label>
           <Input id="release"
                  name="release"  
                  className="SliderForm-input" 
@@ -103,9 +82,23 @@ const SliderForm = ({controls, callback}) => {
                  value={levels.release}>
           </Input>        
         </FormGroup>
+        <FormGroup className="SliderForm-group">
+          <Label htmlFor="gain" className="SliderForm-label small">Amp</Label>
+          <Input id="gain"
+                 name="gain" 
+                 className="SliderForm-input" 
+                 orient="vertical" 
+                 type="range" 
+                 step="0.01" 
+                 min="-30" 
+                 max="10"
+                 onMouseUp={mouseUp}
+                 onChange={handleChange}
+                 value={levels.gain}>
+          </Input>
+        </FormGroup>
       </Form>
     </div>
-
   )
 }
 

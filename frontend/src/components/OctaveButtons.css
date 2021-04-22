@@ -1,0 +1,30 @@
+.octave {
+  border: 2px solid rgb(78, 72, 130);
+  border-radius: 3px;
+  width: 30%;
+  margin: 20px 0 20px 0;
+}
+
+.octave h4 {
+  margin: -15px auto 10px auto;
+  background-color: #282c34;
+  width: 30%;
+  font-weight: 600;
+}
+
+.octave button {
+	background-color: #4c527e;
+	color: #ccc;
+	font-size: 1.1rem;
+	line-height: .6;
+	text-align: center;
+	padding: 8px 12px;
+	margin: 0 auto;
+  border: 0;
+  border-radius: 3px;
+	transition: all 0.1s ease-in-out;
+}
+
+.octave button:active {
+	background-color: #007bff;
+}

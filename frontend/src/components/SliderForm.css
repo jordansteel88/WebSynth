@@ -1,18 +1,28 @@
-.SliderForm {
-  width: 100px;
-  /* display: flex; */
-  margin-bottom: 20px;
+.envelope {
+  border: 2px solid rgb(78, 72, 130);
+  border-radius: 3px;
+  width: 85%;
+  margin-bottom: 10px;
+}
+
+.envelope h4 {
+  margin: -15px auto 10px auto;
+  background-color: #282c34;
+  width: 13%;
+  font-weight: 600;
 }
 
 .SliderForm-label {
   display: block;
-  width: 100px;
+  width: 70px;
+  font-weight: 300;
+  margin: 0 auto;
 }
 
 .SliderForm-input {
     -webkit-appearance: none;
     height: 100px;
-    width: 100px;
+    width: 100%;
     border-radius: 5px;
     background: #ccc;
     outline: none;
@@ -21,6 +31,8 @@
     margin-bottom: 30px;
 }
 
-.Slider-group {
+.SliderForm-group {
   display: inline-block;
+  height: 20px;
+  width: 20%;
 }
