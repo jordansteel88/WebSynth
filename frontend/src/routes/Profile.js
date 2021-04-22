@@ -9,20 +9,29 @@ const Profile = () => {
   const [profiles, setProfiles] = useState(null);
   const username = currentUser.username;
 
-
   const getProfiles = async () => {
     let foundProfiles = await BackendApi.getUsersProfiles(username);
     setProfiles(foundProfiles);
-  }
+  };
 
   useEffect(() => {
     getProfiles();
-  }, [])
+  //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])  
+  
+  // useEffect(() => {
+  //   const getProfiles = async () => {
+  //     let foundProfiles = await BackendApi.getUsersProfiles(username);
+  //     setProfiles(foundProfiles);
+  //   }
+  //   getProfiles();
+  // }, [username])
 
   const loadProfile = async (evt) => {
     let profileID = evt.target.getAttribute('data-id');
-    let profileSettings = await BackendApi.getProfileData(username, profileID);
-    // console.log(profileSettings);
+    let res = await BackendApi.getProfileData(username, profileID);
+    let profileSettings = res.effects;
+    console.log(profileSettings);
   }
 
   if (!profiles) return "Loading..."

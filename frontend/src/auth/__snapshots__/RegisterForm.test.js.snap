@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="RegisterForm mt-5"
+  >
+    <h3
+      class="mb-5"
+    >
+      Please fill out all fields to register
+    </h3>
+    <form
+      class="RegisterForm-form"
+    >
+      <div
+        class="form-group"
+      >
+        <label
+          class=""
+          for="firstName"
+        >
+          First Name
+        </label>
+        <input
+          class="RegisterForm-input form-control"
+          id="firstName"
+          name="firstName"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        class="form-group"
+      >
+        <label
+          class=""
+          for="lastName"
+        >
+          Last Name
+        </label>
+        <input
+          class="RegisterForm-input form-control"
+          id="lastName"
+          name="lastName"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        class="form-group"
+      >
+        <label
+          class=""
+          for="email"
+        >
+          Email
+        </label>
+        <input
+          class="RegisterForm-input form-control"
+          id="email"
+          name="email"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        class="form-group"
+      >
+        <label
+          class=""
+          for="username"
+        >
+          Username
+        </label>
+        <input
+          class="RegisterForm-input form-control"
+          id="username"
+          name="username"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        class="form-group"
+      >
+        <label
+          class=""
+          for="password"
+        >
+          Password
+        </label>
+        <input
+          class="RegisterForm-input form-control"
+          id="password"
+          name="password"
+          type="password"
+          value=""
+        />
+      </div>
+      <button
+        class="RegisterForm-btn mb-5 btn btn-primary"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;

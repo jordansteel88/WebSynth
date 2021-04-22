@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./Home.css";
 import Keyboard from '../components/Keyboard';
 import EffectsPanel from '../components/EffectsPanel';
@@ -13,3 +13,5 @@ const Home = () => {
 }
 
 export default Home;
+
+//currentUser undefined
