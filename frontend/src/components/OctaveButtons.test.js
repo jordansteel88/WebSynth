@@ -1,12 +1,34 @@
-// import React from "react";
-// import { render } from "@testing-library/react";
-// import OctaveButtons from "./OctaveButtons";
+import React from "react";
+import { render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import OctaveButtons from "./OctaveButtons";
 
-// it("matches snapshot", function () {
-//   const { asFragment } = render(<OctaveButtons 
-//                                   controls={octave} 
-//                                   callback={setOctave} />);
-//   expect(asFragment()).toMatchSnapshot();
-// });
+describe('Octave Buttons', () => {
 
-// //props undefined
+  let setOctave = jest.fn();
+
+  it("button up click should call function", function () {
+    const { getByRole } = render(<OctaveButtons 
+                                    controls={4} 
+                                    callback={setOctave} />);
+   
+    expect(setOctave).toBeCalledTimes(1);
+
+    let el = getByRole('button', {name: /\+/i});
+    userEvent.click(el);
+    expect(setOctave).toBeCalledTimes(2);
+  });  
+  
+  it("button down click should call function", function () {
+    const { getByRole } = render(<OctaveButtons 
+                                    controls={4} 
+                                    callback={setOctave} />);
+   
+    expect(setOctave).toBeCalledTimes(1);
+
+    let el = getByRole('button', {name: /\-/i});
+    userEvent.click(el);
+    expect(setOctave).toBeCalledTimes(2);
+  });
+
+});

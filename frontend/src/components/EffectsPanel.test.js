@@ -1,14 +1,34 @@
-// import React from "react";
-// import { render } from "@testing-library/react";
-// import EffectsPanel from "./EffectsPanel";
+import React from "react";
+import { render } from "@testing-library/react";
+import EffectsPanel from "./EffectsPanel";
+import UserContext from '../auth/UserContext';
+// import Tone from 'tone';
+// import Synth from './Synth';
 
-// it("renders without crashing", function() {
-//   render(<EffectsPanel />);
-// });
+jest.mock('./Synth', () => {
+  return function DummySynth() {
+    return (
+      <div>DummySynth</div>
+  )};
+})
 
-// it("matches snapshot", function () {
-//   const { asFragment } = render(<EffectsPanel />);
-//   expect(asFragment()).toMatchSnapshot();
-// });
 
-// //need to mock currentUser?
+
+describe('Effects Panel', () => {
+  const initialState = {
+    currentUser: "test"
+  }
+
+  it("renders without crashing", function() {
+    render(
+      <UserContext.Provider value={{ initialState }}>
+        <EffectsPanel />;
+      </UserContext.Provider>
+    );
+  });
+});
+
+
+
+
+

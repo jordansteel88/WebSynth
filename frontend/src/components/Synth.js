@@ -3,7 +3,6 @@ import { ALLOWED_KEYS } from '../constants/layout';
 import { playSynth } from '../tone/playSynth';
 import * as Tone from 'tone';
 
-
 let keyCount = 0;
 
 const Synth = ({ levels, waveform, octave }) => {
@@ -108,6 +107,18 @@ const Synth = ({ levels, waveform, octave }) => {
   }, [pressedKeys, levels, waveform, octave]);
 
   return null;
+}
+
+Synth.defaultProps = {
+  levels: {
+    attack: 0.5,
+    decay: 0.5,
+    sustain: 0.5,
+    release: 0.5,
+    gain: 0
+  },
+  waveform: 'sine',
+  octave: 4
 }
 
 export default Synth;

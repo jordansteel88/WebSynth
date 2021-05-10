@@ -1,10 +1,7 @@
-// import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import UserContext from './auth/UserContext';
-// import { attack, release } from './api/api';
-// import Keyboard from './components/Keyboard'
 import BackendApi from './api/api';
 import Navigation from './routes/Navigation';
 import Routes from './routes/Routes';
@@ -78,7 +75,7 @@ function App() {
     <BrowserRouter>
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <div className="App">
-          <Navigation logout={logout} />  
+          {/* <Navigation logout={logout} />   */}
           <div className="App-header">
             <Routes login={login} register={register} />
           </div>

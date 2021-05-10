@@ -21,8 +21,8 @@ const OctaveButtons = ({controls, callback}) => {
     <div className="octave">
       <h4>Octave</h4>
         <div className="WaveformForm-radios">
-          <button onClick={clickDown}>-</button>
-          <button onClick={clickUp}>+</button>          
+          <button name="down" onClick={clickDown}>-</button>
+          <button name="up" onClick={clickUp}>+</button>          
         </div>     
     </div>
   )

@@ -59,9 +59,9 @@ const Navigation = ({ logout }) => {
   return (
     <div className="Navigation">
       <Navbar expand="md">
-        <NavbarBrand>
+        {/* <NavbarBrand>
           <NavLink className="text-white" to="/">WebSynth</NavLink>
-        </NavbarBrand>
+        </NavbarBrand> */}
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           {currentUser ? loggedInNav() : loggedOutNav()}           

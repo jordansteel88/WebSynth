@@ -1,16 +1,63 @@
-// import React from "react";
-// import { render } from "@testing-library/react";
-// import WaveformForm from "./WaveformForm";
+import React from "react";
+import { render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import WaveformForm from "./WaveformForm";
 
-// it("renders without crashing", function() {
-//   render(<WaveformForm />);
-// });
+describe('Waveform Form', () => {
 
-// it("matches snapshot", function() {
-//   const { asFragment } = render(<WaveformForm
-//                                   controls={waveform} 
-//                                   callback={setWaveform} />);
-//   expect(asFragment()).toMatchSnapshot();
-// });
+  let setWaveform = jest.fn();
 
-// //props undefined
+  it("radio sine click should call function", function () {
+    const { getByRole } = render(<WaveformForm 
+                                    controls={''} 
+                                    callback={setWaveform} />);
+   
+    expect(setWaveform).toBeCalledTimes(0);
+
+    let triangleEl = getByRole('radio', {name: /triangle/i});
+    userEvent.click(triangleEl);
+    expect(setWaveform).toBeCalledTimes(1);
+
+    let sineEl = getByRole('radio', {name: /sine/i});
+    userEvent.click(sineEl);
+    expect(setWaveform).toBeCalledTimes(2);
+  });  
+  
+  it("radio triangle click should call function", function () {
+    const { getByRole } = render(<WaveformForm 
+                                    controls={'sine'} 
+                                    callback={setWaveform} />);
+   
+    expect(setWaveform).toBeCalledTimes(0);
+
+    let el = getByRole('radio', {name: /triangle/i});
+    userEvent.click(el);
+    expect(setWaveform).toBeCalledTimes(1);
+  });  
+  
+  it("radio sawtooth click should call function", function () {
+    const { getByRole } = render(<WaveformForm 
+                                    controls={'sawtooth'} 
+                                    callback={setWaveform} />);
+   
+    expect(setWaveform).toBeCalledTimes(0);
+
+    let el = getByRole('radio', {name: /triangle/i});
+    userEvent.click(el);
+    expect(setWaveform).toBeCalledTimes(1);
+  });  
+  
+  it("radio square click should call function", function () {
+    const { getByRole } = render(<WaveformForm 
+                                    controls={'square'} 
+                                    callback={setWaveform} />);
+   
+    expect(setWaveform).toBeCalledTimes(0);
+
+    let el = getByRole('radio', {name: /triangle/i});
+    userEvent.click(el);
+    expect(setWaveform).toBeCalledTimes(1);
+  });
+
+});
+

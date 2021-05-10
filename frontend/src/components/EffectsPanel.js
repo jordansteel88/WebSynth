@@ -27,13 +27,15 @@ const EffectsPanel = () => {
 
   return (
     <div className="EffectsPanel">
-      <Synth levels={levels} waveform={waveform} octave={octave}/>
-      {currentUser
+      <Synth levels={levels} waveform={waveform} octave={octave} />
+      {/* {currentUser
       ? <> <SliderForm controls={levels} callback={setLevels} />
            <WaveformForm controls={waveform} callback={setWaveform} />
            <OctaveButtons controls={octave} callback={setOctave}/> </>
-      : <h2>Log in or sign up to access more features!</h2>}
-
+      : <h2>Log in or sign up to access more features!</h2>} */}
+      <SliderForm controls={levels} callback={setLevels} />
+      <WaveformForm controls={waveform} callback={setWaveform} />
+      <OctaveButtons controls={octave} callback={setOctave} />  
     </div>
   )
 }
