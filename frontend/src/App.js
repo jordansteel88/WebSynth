@@ -9,6 +9,7 @@ import jwt from "jsonwebtoken";
 
 function App() { 
   const [currentUser, setCurrentUser] = useState(null);
+  const [currentProfile, setCurrentProfile] = useState(null);
   const [token, setToken] = useState(null);
   const [userDataRetrieved, setUserDataRetrieved] = useState(false); 
 
@@ -50,6 +51,12 @@ function App() {
     setToken(null);
   }
 
+  const loadProfile = (profile) => {
+    console.log(profile);
+    setCurrentProfile(profile);
+    console.log(currentProfile);
+  }
+
   useEffect(function getUserData() {
     const getCurrentUser = async () => {
       if (token) {
@@ -71,13 +78,20 @@ function App() {
 
   if (!userDataRetrieved) return "Loading...";
 
+
+
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+      <UserContext.Provider value={{ currentUser, 
+                                     setCurrentUser, 
+                                     currentProfile, 
+                                     setCurrentProfile }}>
         <div className="App">
-          {/* <Navigation logout={logout} />   */}
+          <Navigation logout={logout} />  
           <div className="App-header">
-            <Routes login={login} register={register} />
+            <Routes login={login} 
+                    register={register} 
+                    loadProfile={loadProfile} />
           </div>
         </div>
       </UserContext.Provider>

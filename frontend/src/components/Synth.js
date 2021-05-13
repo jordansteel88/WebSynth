@@ -1,11 +1,18 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useContext } from "react";
 import { ALLOWED_KEYS } from '../constants/layout';
 import { playSynth } from '../tone/playSynth';
 import * as Tone from 'tone';
 
+import SettingsContext from "../utilities/SettingsContext";
+
+
 let keyCount = 0;
 
-const Synth = ({ levels, waveform, octave }) => {
+// const Synth = ({ levels, waveform, octave }) => {
+const Synth = () => {
+
+  const { levels, waveform, octave} = useContext(SettingsContext);
+
   const [pressedKeys, setPressedKeys] = useState([]);
 
   const configureSynth = (obj, waveform) => { 
@@ -61,9 +68,11 @@ const Synth = ({ levels, waveform, octave }) => {
 
   useEffect(() => {
     const handleKeydown = (evt) => {
+      console.log(ALLOWED_KEYS.includes(evt.key.toUpperCase()));
 
       if (ALLOWED_KEYS.includes(evt.key.toUpperCase())) {
         evt.preventDefault();
+        evt.stopPropagation();
       }
 
       if (evt.repeat || pressedKeys.includes(evt.key.toUpperCase())) {
@@ -95,13 +104,19 @@ const Synth = ({ levels, waveform, octave }) => {
       keyCount--;
       if (keyCount === 0) setPressedKeys([]);
     };
+
+    // const handleKeypress = (evt) => {
+    //   evt.stopPropagation();
+    // }
     
     window.addEventListener('keydown', handleKeydown);
     window.addEventListener('keyup', handleKeyup);
+    // window.addEventListener('keypress', handleKeypress);
 
     return () => {
       window.removeEventListener('keydown', handleKeydown)
-      window.removeEventListener('keyup', handleKeyup);    
+      window.removeEventListener('keyup', handleKeyup); 
+      // window.addEventListener('keypress', handleKeypress);   
     }
   //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pressedKeys, levels, waveform, octave]);

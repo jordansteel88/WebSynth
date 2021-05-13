@@ -4,7 +4,7 @@ import BackendApi from '../api/api';
 import { Button } from 'reactstrap';
 import './Profile.css';
 
-const Profile = () => {
+const Profile = ({ loadProfile }) => {
   const { currentUser } = useContext(UserContext);
   const [profiles, setProfiles] = useState(null);
   const username = currentUser.username;
@@ -27,11 +27,12 @@ const Profile = () => {
   //   getProfiles();
   // }, [username])
 
-  const loadProfile = async (evt) => {
+  const getProfile = async (evt) => {
     let profileID = evt.target.getAttribute('data-id');
     let res = await BackendApi.getProfileData(username, profileID);
     let profileSettings = res.effects;
     console.log(profileSettings);
+    loadProfile(profileSettings);
   }
 
   if (!profiles) return "Loading..."
@@ -41,7 +42,7 @@ const Profile = () => {
             color="primary" 
             key={profile.id}
             data-id={profile.id}
-            onClick={loadProfile}>
+            onClick={getProfile}>
       {profile.profile_name}
     </Button>
   ))

@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import './OctaveButtons.css';
 
-const OctaveButtons = ({controls, callback}) => {
-  const [octave, setOctave] = useState(controls); 
+import SettingsContext from '../utilities/SettingsContext';
+
+const OctaveButtons = () => {
+  const { octave, setOctave } = useContext(SettingsContext); 
 
   useEffect(() => {
     console.log(octave);
-    callback(octave)
-  }, [callback, octave])
+    setOctave(octave)
+  }, [setOctave, octave])
 
   const clickUp = () => {
     setOctave(octave + 1);

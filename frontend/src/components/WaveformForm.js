@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import './WaveformForm.css';
 
-const WaveformForm = ({controls, callback}) => {
-  // const [waveform, setWaveform] = useState(controls);
+import SettingsContext from '../utilities/SettingsContext';
+
+const WaveformForm = () => {
+  const { setWaveform } = useContext(SettingsContext);
   const [checked, setChecked] = useState('sine');
 
   const handleChange = evt => {
     const { value } = evt.target;
     console.log("form value: " + value);
-    callback(value);
+    setWaveform(value);
   }
 
   const handleClick = (evt) => {
@@ -26,6 +28,7 @@ const WaveformForm = ({controls, callback}) => {
                      value="sine"
                      checked={checked === 'sine'}
                      onClick={handleClick}
+                     readOnly
                      />
               <label htmlFor="sine">Sine</label>
 
@@ -35,6 +38,7 @@ const WaveformForm = ({controls, callback}) => {
                      value="triangle"
                      checked={checked === 'triangle'}
                      onClick={handleClick}
+                     readOnly
                      />
               <label htmlFor="triangle">Triangle</label>                 
               
@@ -44,6 +48,7 @@ const WaveformForm = ({controls, callback}) => {
                      value="sawtooth"
                      checked={checked === 'sawtooth'}
                      onClick={handleClick}
+                     readOnly
                      />
               <label htmlFor="sawtooth">Sawtooth</label>                 
               
@@ -53,6 +58,7 @@ const WaveformForm = ({controls, callback}) => {
                      value="square"
                      checked={checked === 'square'}
                      onClick={handleClick}
+                     readOnly
                      />
               <label htmlFor="square">Square</label>
         </div>     

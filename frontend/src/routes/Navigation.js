@@ -6,7 +6,6 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem
 } from 'reactstrap';
@@ -59,9 +58,13 @@ const Navigation = ({ logout }) => {
   return (
     <div className="Navigation">
       <Navbar expand="md">
-        {/* <NavbarBrand>
-          <NavLink className="text-white" to="/">WebSynth</NavLink>
-        </NavbarBrand> */}
+        <Nav>
+          <NavItem className="mr-3">
+            <NavLink className="text-white" to="/">
+              WebSynth
+            </NavLink>
+          </NavItem>
+        </Nav>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           {currentUser ? loggedInNav() : loggedOutNav()}           

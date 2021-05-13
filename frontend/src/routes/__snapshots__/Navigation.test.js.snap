@@ -8,6 +8,21 @@ exports[`Navigation matches snapshot 1`] = `
     <nav
       class="navbar navbar-expand-md"
     >
+      <ul
+        class="nav"
+      >
+        <li
+          class="mr-3 nav-item"
+        >
+          <a
+            aria-current="page"
+            class="text-white active"
+            href="/"
+          >
+            WebSynth
+          </a>
+        </li>
+      </ul>
       <button
         aria-label="Toggle navigation"
         class="navbar-toggler"

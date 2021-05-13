@@ -2,15 +2,19 @@ import React from "react";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import WaveformForm from "./WaveformForm";
+import SettingsContext from "../utilities/SettingsContext";
 
 describe('Waveform Form', () => {
 
+  let waveform = "sine";
   let setWaveform = jest.fn();
 
   it("radio sine click should call function", function () {
-    const { getByRole } = render(<WaveformForm 
-                                    controls={''} 
-                                    callback={setWaveform} />);
+    const { getByRole } = render(
+      <SettingsContext.Provider value={{ waveform, setWaveform }}>
+        <WaveformForm />
+      </SettingsContext.Provider>
+    );
    
     expect(setWaveform).toBeCalledTimes(0);
 
@@ -24,9 +28,11 @@ describe('Waveform Form', () => {
   });  
   
   it("radio triangle click should call function", function () {
-    const { getByRole } = render(<WaveformForm 
-                                    controls={'sine'} 
-                                    callback={setWaveform} />);
+    const { getByRole } = render(
+      <SettingsContext.Provider value={{ waveform, setWaveform }}>
+        <WaveformForm />
+      </SettingsContext.Provider>
+    );
    
     expect(setWaveform).toBeCalledTimes(0);
 
@@ -36,9 +42,11 @@ describe('Waveform Form', () => {
   });  
   
   it("radio sawtooth click should call function", function () {
-    const { getByRole } = render(<WaveformForm 
-                                    controls={'sawtooth'} 
-                                    callback={setWaveform} />);
+    const { getByRole } = render(
+      <SettingsContext.Provider value={{ waveform, setWaveform }}>
+        <WaveformForm />
+      </SettingsContext.Provider>
+    );
    
     expect(setWaveform).toBeCalledTimes(0);
 
@@ -48,9 +56,11 @@ describe('Waveform Form', () => {
   });  
   
   it("radio square click should call function", function () {
-    const { getByRole } = render(<WaveformForm 
-                                    controls={'square'} 
-                                    callback={setWaveform} />);
+    const { getByRole } = render(
+      <SettingsContext.Provider value={{ waveform, setWaveform }}>
+        <WaveformForm />
+      </SettingsContext.Provider>
+    );
    
     expect(setWaveform).toBeCalledTimes(0);
 

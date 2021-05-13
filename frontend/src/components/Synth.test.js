@@ -4,6 +4,12 @@ import { render, fireEvent } from "@testing-library/react";
 import Synth from "./Synth";
 import * as Tone from 'tone';
 import * as PlaySynth from '../tone/playSynth';
+import SettingsContext from "../utilities/SettingsContext";
+
+
+let levels = true;
+let waveform = true;
+let octave = true;
 
 jest.mock('tone', () => {
   return jest.fn()
@@ -41,16 +47,24 @@ describe('Synth', () => {
   Tone.PolySynth = mockedPolySynth;
 
   it("renders without crashing", function() {
-    render(<Synth />);
+    render(
+      <SettingsContext.Provider value={{ levels, waveform, octave }}>
+        <Synth />
+      </SettingsContext.Provider>
+    );
   });
 
-  it('renders', () => {
-      render( <Synth levels={{}} />);
+  it('calls PlaySynth on keypress', () => {
+    render(
+      <SettingsContext.Provider value={{ levels, waveform, octave }}>
+        <Synth />
+      </SettingsContext.Provider>
+    );
 
-      fireEvent.keyDown(window, { key: 'a', code: '65' })
-      expect(synthSpy).toBeCalledTimes(1)
+    fireEvent.keyDown(window, { key: 'a', code: '65' })
+    expect(synthSpy).toBeCalledTimes(1)
 
-      fireEvent.keyUp(window, { key: 'a', code: '65' })
-      expect(synthSpy).toBeCalledTimes(2)
+    fireEvent.keyUp(window, { key: 'a', code: '65' })
+    expect(synthSpy).toBeCalledTimes(2)
   })
 });

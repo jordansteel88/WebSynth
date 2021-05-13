@@ -220,6 +220,35 @@ exports[`Routes matches snapshot 1`] = `
           </div>
         </div>
       </div>
+      <div
+        class="SaveForm-container"
+      >
+        <form
+          class="SaveForm mt-5 w-50 d-inline"
+        >
+          <div
+            class="input-group mt-5 mx-auto w-50"
+          >
+            <input
+              aria-describedby="button-save-profile"
+              aria-label="save profile"
+              class="form-control SaveForm-input form-control"
+              id="name"
+              name="name"
+              placeholder="Enter a name for your profile..."
+              type="text"
+              value=""
+            />
+            <button
+              class="btn btn btn-primary"
+              id="button-save-profile"
+              type="button"
+            >
+              Save Profile
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </DocumentFragment>

@@ -2,15 +2,28 @@ import React from "react";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import SliderForm from "./SliderForm";
+import SettingsContext from "../utilities/SettingsContext";
 
 describe('Slider Form', () => {
 
+  let levels = {attack: true}
+
   let setLevels = jest.fn();
 
+  // beforeEach(() => {
+  //   const { getByRole } = render(
+  //     <SettingsContext.Provider value={{ levels, setLevels }}>
+  //       <SliderForm />
+  //     </SettingsContext.Provider>
+  //   );
+  // })
+
   it("attack slide should call function", function () {
-    const { getByRole } = render(<SliderForm 
-                                    controls={0.5} 
-                                    callback={setLevels} />);
+    const { getByRole } = render(
+      <SettingsContext.Provider value={{ levels, setLevels }}>
+        <SliderForm />
+      </SettingsContext.Provider>
+    );
    
     expect(setLevels).toBeCalledTimes(0);
 
@@ -20,9 +33,11 @@ describe('Slider Form', () => {
   });  
   
   it("decay slide should call function", function () {
-    const { getByRole } = render(<SliderForm 
-                                    controls={0.5} 
-                                    callback={setLevels} />);
+    const { getByRole } = render(
+      <SettingsContext.Provider value={{ levels, setLevels }}>
+        <SliderForm />
+      </SettingsContext.Provider>
+    );
    
     expect(setLevels).toBeCalledTimes(0);
 
@@ -32,9 +47,11 @@ describe('Slider Form', () => {
   });  
   
   it("sustain slide should call function", function () {
-    const { getByRole } = render(<SliderForm 
-                                    controls={0.5} 
-                                    callback={setLevels} />);
+    const { getByRole } = render(
+      <SettingsContext.Provider value={{ levels, setLevels }}>
+        <SliderForm />
+      </SettingsContext.Provider>
+    );
    
     expect(setLevels).toBeCalledTimes(0);
 
@@ -44,9 +61,11 @@ describe('Slider Form', () => {
   });  
   
   it("release slide should call function", function () {
-    const { getByRole } = render(<SliderForm 
-                                    controls={0.5} 
-                                    callback={setLevels} />);
+    const { getByRole } = render(
+      <SettingsContext.Provider value={{ levels, setLevels }}>
+        <SliderForm />
+      </SettingsContext.Provider>
+    );
    
     expect(setLevels).toBeCalledTimes(0);
 
@@ -56,9 +75,11 @@ describe('Slider Form', () => {
   });  
   
   it("gain slide should call function", function () {
-    const { getByRole } = render(<SliderForm 
-                                    controls={0} 
-                                    callback={setLevels} />);
+    const { getByRole } = render(
+      <SettingsContext.Provider value={{ levels, setLevels }}>
+        <SliderForm />
+      </SettingsContext.Provider>
+    );
    
     expect(setLevels).toBeCalledTimes(0);
 

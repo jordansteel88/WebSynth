@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import './SliderForm.css';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 
-const SliderForm = ({controls, callback}) => {
-  const [levels, setLevels] = useState(controls);
+import SettingsContext from '../utilities/SettingsContext';
+
+const SliderForm = () => {
+  const {levels, setLevels} = useContext(SettingsContext);
 
   const handleChange = evt => {
     const { name, value } = evt.target;
@@ -15,7 +17,7 @@ const SliderForm = ({controls, callback}) => {
   }
 
   const mouseUp = () => {
-    callback(levels)
+    setLevels(levels)
   }
 
   return (

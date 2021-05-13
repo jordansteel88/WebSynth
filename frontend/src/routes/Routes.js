@@ -5,7 +5,7 @@ import LoginForm from '../auth/LoginForm';
 import RegisterForm from '../auth/RegisterForm';
 import Profile from './Profile';
 
-const Routes = ({ login, register }) => {
+const Routes = ({ login, register, loadProfile }) => {
   return (
     <div>
       <Switch>
@@ -22,7 +22,7 @@ const Routes = ({ login, register }) => {
         </Route>  
 
         <Route exact path="/profiles/:currentUser">
-          <Profile />
+          <Profile loadProfile={loadProfile} />
         </Route> 
 
         <Redirect to="/" />
