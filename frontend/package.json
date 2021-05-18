@@ -21,7 +21,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "surge --project ./ --domain faithful-activity.surge.sh"
   },
   "eslintConfig": {
     "extends": [
@@ -47,7 +48,8 @@
   },
   "git": {
     "scripts": {
-      "pre-push": "surge --project ./ knowledgeable-space.surge.sh example-githooks.surge.sh"
+      "post-commit": "npm run deploy",
+      "pre-push": "npm run deploy"
     }
   }
 }
