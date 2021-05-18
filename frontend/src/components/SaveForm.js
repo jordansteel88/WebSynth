@@ -19,6 +19,7 @@ const SaveForm = () => {
   // }, []);
 
   const handleChange = evt => {
+    evt.stopPropagation();
     const { name, value } = evt.target;
     setProfileName(formData => ({
       ...formData,

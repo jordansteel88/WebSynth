@@ -36,7 +36,7 @@ const Home = () => {
       <div className="Home">
         <EffectsPanel /> 
         <Keyboard />
-        <SaveForm />
+        {/* <SaveForm /> */}
       </div>
     </SettingsContext.Provider>
   );

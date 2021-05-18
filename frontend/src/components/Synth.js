@@ -11,7 +11,7 @@ let keyCount = 0;
 // const Synth = ({ levels, waveform, octave }) => {
 const Synth = () => {
 
-  const { levels, waveform, octave} = useContext(SettingsContext);
+  const { levels, waveform, octave } = useContext(SettingsContext);
 
   const [pressedKeys, setPressedKeys] = useState([]);
 
