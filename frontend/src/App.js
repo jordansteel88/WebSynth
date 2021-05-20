@@ -19,9 +19,11 @@ function App() {
     if (initialValue) {
       localStorage.removeItem("token");
     } else {
-      localStorage.setItem("token", token)
+      localStorage.setItem("token", token);
     }
-  }, [token, currentUser])
+
+    console.log(localStorage.getItme("token"));
+  }, [token, currentUser]);
 
   const register = async (data) => {
     try {
